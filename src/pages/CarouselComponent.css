@@ -1,0 +1,13 @@
+.carousel-slide{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.carousel-slide img{
+    width: 50%;
+    height: 100%;
+}
+.carousel-slide p{
+    color: rgb(147, 145, 145);
+}
