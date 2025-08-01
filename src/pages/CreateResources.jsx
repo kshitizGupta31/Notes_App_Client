@@ -77,7 +77,7 @@ export default function CreateResources() {
         cloudpath: filepathRef.current
       });
 
-      const response = await fetch("http://localhost:4000/resources", {
+      const response = await fetch("https://notes-app-server-dd6s.onrender.com/resources", {
         method: "POST",
         body: data,
         credentials: "include",

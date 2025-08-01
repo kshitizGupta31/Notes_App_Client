@@ -7,7 +7,7 @@ export default function PostPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`http://localhost:4000/resources/${id}`)
+    fetch(`https://notes-app-server-dd6s.onrender.com/resources/${id}`)
       .then(response => response.json())
       .then(postInfo => setPostInfo(postInfo))
       .catch(error => console.error('Error fetching post:', error));

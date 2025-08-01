@@ -10,7 +10,7 @@ function Header() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch("https://notes-app-server-dd6s.onrender.com/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -21,7 +21,7 @@ function Header() {
   }, []);
 
   function logout() {
-    fetch("http://localhost:4000/logout", {
+    fetch("https://notes-app-server-dd6s.onrender.com/logout", {
       credentials: "include",
       method: "POST",
     });

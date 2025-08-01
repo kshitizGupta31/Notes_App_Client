@@ -10,7 +10,7 @@ export default function Resources() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch('http://localhost:4000/profile', {
+    fetch('https://notes-app-server-dd6s.onrender.com/profile', {
       credentials: 'include',
     })
       .then(response => {
@@ -22,7 +22,7 @@ export default function Resources() {
       .then(userInfo => {
         setUserInfo(userInfo);
         if (userInfo) {
-          fetch('http://localhost:4000/resources')
+          fetch('https://notes-app-server-dd6s.onrender.com/resources')
             .then(response => response.json())
             .then(posts => setPosts(posts))
             .catch(error => console.error('Error fetching resources:', error))
