@@ -19,11 +19,13 @@ export default function LoginPage() {
       credentials: "include",
     });
     if (response.ok) {
-      // localStorage.setItem("currentUser",JSON.stringify(res));
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
+      const userInfo = await response.json();
+      setUserInfo(userInfo);
+      
+      // Add a small delay to ensure cookie is set
+      setTimeout(() => {
         setRedirect(true);
-      });
+      }, 100);
     } else {
       alert("wrong credentials");
     }

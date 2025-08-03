@@ -30,7 +30,14 @@ function Header() {
       setUserInfo(null);
       setIsAdmin(false);
     });
-  }, []);
+  }, []); // Empty dependency array - only run on mount
+
+  // Additional effect to refresh user info when userInfo changes
+  useEffect(() => {
+    if (userInfo) {
+      setIsAdmin(userInfo.isAdmin);
+    }
+  }, [userInfo]);
 
   const logout = () => {
     fetch(`${API_BASE_URL}/logout`, {
@@ -47,6 +54,27 @@ function Header() {
       setIsAdmin(false);
     });
   }
+
+  // Debug function to check authentication status
+  const checkAuthStatus = () => {
+    console.log("Current userInfo:", userInfo);
+    console.log("Current isAdmin:", isAdmin);
+    
+    fetch(`${API_BASE_URL}/profile`, {
+      credentials: "include",
+    }).then((response) => {
+      console.log("Profile response status:", response.status);
+      if (response.ok) {
+        response.json().then((userInfo) => {
+          console.log("Profile response data:", userInfo);
+        });
+      } else {
+        console.log("Profile request failed");
+      }
+    }).catch((error) => {
+      console.error('Profile request error:', error);
+    });
+  };
 
   const username = userInfo?.username;
 
