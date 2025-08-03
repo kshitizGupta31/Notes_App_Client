@@ -10,7 +10,7 @@ export default function Resources() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch('https://notes-app-server-dd6s.onrender.com/profile', {
+    fetch(`${import.meta.env.VITE_API_URL}/profile`, {
       credentials: 'include',
     })
       .then(response => {
@@ -22,7 +22,7 @@ export default function Resources() {
       .then(userInfo => {
         setUserInfo(userInfo);
         if (userInfo) {
-          fetch('https://notes-app-server-dd6s.onrender.com/resources')
+          fetch(`${import.meta.env.VITE_API_URL}/resources`)
             .then(response => response.json())
             .then(posts => setPosts(posts))
             .catch(error => console.error('Error fetching resources:', error))

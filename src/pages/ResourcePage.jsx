@@ -7,7 +7,7 @@ export default function PostPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`https://notes-app-server-dd6s.onrender.com/resources/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/resources/${id}`)
       .then(response => response.json())
       .then(postInfo => setPostInfo(postInfo))
       .catch(error => console.error('Error fetching post:', error));

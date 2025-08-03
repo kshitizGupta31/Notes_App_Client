@@ -77,7 +77,7 @@ export default function CreateResources() {
         cloudpath: filepathRef.current
       });
 
-      const response = await fetch("https://notes-app-server-dd6s.onrender.com/resources", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/resources`, {
         method: "POST",
         body: data,
         credentials: "include",

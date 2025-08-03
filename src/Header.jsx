@@ -10,7 +10,7 @@ function Header() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    fetch("https://notes-app-server-dd6s.onrender.com/profile", {
+    fetch(`${import.meta.env.VITE_API_URL}/profile`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -20,8 +20,8 @@ function Header() {
     });
   }, []);
 
-  function logout() {
-    fetch("https://notes-app-server-dd6s.onrender.com/logout", {
+  const logout = () => {
+    fetch(`${import.meta.env.VITE_API_URL}/logout`, {
       credentials: "include",
       method: "POST",
     });

@@ -11,7 +11,7 @@ export default function RegisterPage() {
   async function register(ev) {
     ev.preventDefault();
     console.log("api call: ", username + password + email);
-    const response = await fetch("https://notes-app-server-dd6s.onrender.com/register", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
       method: "POST",
       body: JSON.stringify({ username, password, email }),
       headers: { "Content-Type": "application/json" },
