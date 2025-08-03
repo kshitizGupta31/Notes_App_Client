@@ -46,12 +46,14 @@ export default function LoginPage() {
             placeholder="username"
             value={username}
             onChange={(ev) => setUsername(ev.target.value)}
+            autoComplete="username"
           />
           <input
             type="password"
             placeholder="password"
             value={password}
             onChange={(ev) => setPassword(ev.target.value)}
+            autoComplete="current-password"
           />
           <button
             name="submit"
