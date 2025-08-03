@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "./config";
 import "./Header.css";
 
 function Header() {
@@ -10,7 +11,7 @@ function Header() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/profile`, {
+    fetch(`${API_BASE_URL}/profile`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -21,7 +22,7 @@ function Header() {
   }, []);
 
   const logout = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/logout`, {
+    fetch(`${API_BASE_URL}/logout`, {
       credentials: "include",
       method: "POST",
     });

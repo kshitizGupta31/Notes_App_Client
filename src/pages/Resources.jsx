@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Resource from '../Resource';
+import { API_BASE_URL } from '../config';
 import 'animate.css';
 import './Resources.css';
 
@@ -10,7 +11,7 @@ export default function Resources() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`${import.meta.env.VITE_API_URL}/profile`, {
+    fetch(`${API_BASE_URL}/profile`, {
       credentials: 'include',
     })
       .then(response => {
@@ -22,7 +23,7 @@ export default function Resources() {
       .then(userInfo => {
         setUserInfo(userInfo);
         if (userInfo) {
-          fetch(`${import.meta.env.VITE_API_URL}/resources`)
+          fetch(`${API_BASE_URL}/resources`)
             .then(response => response.json())
             .then(posts => setPosts(posts))
             .catch(error => console.error('Error fetching resources:', error))
