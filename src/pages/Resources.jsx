@@ -15,10 +15,12 @@ export default function Resources() {
       credentials: 'include',
     })
       .then(response => {
-        if (!response.ok) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          // User is not authenticated, which is fine
           throw new Error('Not authenticated');
         }
-        return response.json();
       })
       .then(userInfo => {
         setUserInfo(userInfo);

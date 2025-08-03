@@ -14,10 +14,21 @@ function Header() {
     fetch(`${API_BASE_URL}/profile`, {
       credentials: "include",
     }).then((response) => {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
-        setIsAdmin(userInfo.isAdmin);
-      });
+      if (response.ok) {
+        response.json().then((userInfo) => {
+          setUserInfo(userInfo);
+          setIsAdmin(userInfo.isAdmin);
+        });
+      } else {
+        // User is not logged in, which is fine
+        setUserInfo(null);
+        setIsAdmin(false);
+      }
+    }).catch((error) => {
+      // Handle network errors gracefully
+      console.error('Error fetching profile:', error);
+      setUserInfo(null);
+      setIsAdmin(false);
     });
   }, []);
 
@@ -25,9 +36,16 @@ function Header() {
     fetch(`${API_BASE_URL}/logout`, {
       credentials: "include",
       method: "POST",
+    }).then(() => {
+      // Always clear user state regardless of server response
+      setUserInfo(null);
+      setIsAdmin(false);
+    }).catch((error) => {
+      console.error('Error during logout:', error);
+      // Still clear user state even if logout request fails
+      setUserInfo(null);
+      setIsAdmin(false);
     });
-    setUserInfo(null);
-    setIsAdmin(false);
   }
 
   const username = userInfo?.username;
