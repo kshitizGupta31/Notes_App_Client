@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
+import { API_BASE_URL, CLOUDINARY_UPLOAD_URL, CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_CLOUD_NAME } from "../config";
 import "./Form.css";
 
 export default function CreateResources() {
@@ -22,17 +23,14 @@ export default function CreateResources() {
     
     const data = new FormData();
     data.append("file", files[0]);
-    data.append("upload_preset", "knit");
-    data.append("cloud_name", "dcqqcovdd");
+    data.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+    data.append("cloud_name", CLOUDINARY_CLOUD_NAME);
 
     try {
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dcqqcovdd/image/upload",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
+      const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+        method: "POST",
+        body: data,
+      });
       
       if (!response.ok) {
         throw new Error(`Upload failed: ${response.status}`);
@@ -77,7 +75,7 @@ export default function CreateResources() {
         cloudpath: filepathRef.current
       });
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/resources`, {
+      const response = await fetch(`${API_BASE_URL}/resources`, {
         method: "POST",
         body: data,
         credentials: "include",

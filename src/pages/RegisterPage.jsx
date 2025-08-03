@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 import "./Form.css";
 
 export default function RegisterPage() {
@@ -11,7 +12,7 @@ export default function RegisterPage() {
   async function register(ev) {
     ev.preventDefault();
     console.log("api call: ", username + password + email);
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
+    const response = await fetch(`${API_BASE_URL}/register`, {
       method: "POST",
       body: JSON.stringify({ username, password, email }),
       headers: { "Content-Type": "application/json" },

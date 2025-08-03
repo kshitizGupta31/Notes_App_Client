@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 export default function PostPage() {
   const { id } = useParams();
@@ -7,7 +8,7 @@ export default function PostPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`${import.meta.env.VITE_API_URL}/resources/${id}`)
+    fetch(`${API_BASE_URL}/resources/${id}`)
       .then(response => response.json())
       .then(postInfo => setPostInfo(postInfo))
       .catch(error => console.error('Error fetching post:', error));
